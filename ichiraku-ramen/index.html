@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ichiraku Ramen 🍜 | Home</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- NAVBAR (shared) -->
+  <nav class="navbar">
+    
+
+    <div class="nav-left">
+      <h1 class="logo">ICHIRAKU RAMEN</h1>
+
+      <!-- Delivery / Collection toggle -->
+      <div class="service-toggle" aria-label="Choose delivery or collection">
+        <button id="themeToggle" class="theme-toggle">🌙</button>
+
+        <button class="service-btn active" data-service="delivery">Delivery</button>
+        <button class="service-btn" data-service="collection">Collection</button>
+      </div>
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+    </ul>
+
+<div class="nav-right">
+  <!-- Cart -->
+  <button class="cart-icon" id="cartButton" aria-label="View basket">
+    🛒 <span id="cart-count">0</span>
+  </button>
+
+  <!-- Auth buttons -->
+  <button class="login-btn">Sign In</button>
+  <button class="register-btn">Register</button>
+
+ <div class="dots-wrapper">
+  <button class="dots-menu" id="userMenuToggle">⋮</button>
+  <div class="user-menu" id="userMenu">
+    <button data-action="history">Order History</button>
+    <button data-action="favorites">Favorites</button>
+    <button data-action="theme">Dark / Light Mode</button>
+    <button data-action="settings">Settings</button>
+    <button data-action="help">Help & Support</button>
+    <button data-action="about">About</button>
+    <button data-action="logout" id="logoutItem" style="display:none;">Logout</button>
+  </div>
+</div>
+
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="overlay"></div>
+
+    <div class="content">
+      <h2 id="typing-text"></h2>
+      <p id="greeting"></p>
+      <button type="button" onclick="orderNow()">🍥 Order Now 🍥</button>
+    </div>
+
+    <img src="images/ramen1.png" class="ramen ramen1" alt="Ramen bowl">
+    <img src="images/ramen2.png" class="ramen ramen2" alt="Ramen bowl with egg">
+    <img src="images/ramen3.png" class="ramen ramen3" alt="Spicy ramen bowl">
+  </section>
+
+  <!-- PROMO BANNER -->
+  <section class="promo-banner">
+    <img src="images/kfc-style-promo.jpg" alt="Ichiraku special promotion banner" />
+  </section>
+
+  <!-- SLIDER -->
+  <section class="slider">
+    <div class="slides fade">
+      <img src="images/banner1.jpeg" alt="Naruto spicy ramen promo">
+      <div class="slide-text">
+        <h2>🔥 Naruto Spicy Ramen!</h2>
+        <button type="button" onclick="orderNow()">Order Now</button>
+      </div>
+    </div>
+
+    <div class="slides fade">
+      <img src="images/banner2.png" alt="Ichiraku combo promo">
+      <div class="slide-text">
+        <h2>🍥 Ichiraku Special Combo</h2>
+        <button type="button" onclick="orderNow()">Order Now</button>
+      </div>
+    </div>
+
+    <div class="slides fade">
+      <img src="images/banner3.jpeg" alt="Gyoza side deals promo">
+      <div class="slide-text">
+        <h2>🥟 Gyoza Side Deals</h2>
+        <button type="button" onclick="orderNow()">Order Now</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIMPLE REVIEW STRIP -->
+  <section class="reviews">
+    <h2>What Ninjas Say</h2>
+    <div class="review-grid">
+      <article>
+        <p>“Best ramen in the Hidden Leaf. I’d skip training for this.”</p>
+        <span>- Naruto Uzumaki ⭐⭐⭐⭐⭐</span>
+      </article>
+      <article>
+        <p>“Perfect balance of flavour & chakra. Highly recommended.”</p>
+        <span>- Kakashi Hatake ⭐⭐⭐⭐⭐</span>
+      </article>
+      <article>
+        <p>“Even rivals stop fighting for Ichiraku time.”</p>
+        <span>- Sasuke Uchiha ⭐⭐⭐⭐☆</span>
+      </article>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-links">
+      <a href="about.html">About Us</a>
+      <a href="menu.html">Menu</a>
+      <a href="contact.html">Help & Support</a>
+      <a href="contact.html#contact-form">Contact</a>
+    </div>
+    <p>© 2025 Ichiraku Ramen | The Way of Ninja Food 🍜⚡</p>
+  </footer>
+
+  <!-- LOGIN MODAL -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content auth-modal">
+      <span class="close-login">&times;</span>
+      <h2>Sign In</h2>
+      <form id="loginForm">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" placeholder="Enter username" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter password" required>
+
+        <button type="submit">Sign In</button>
+      </form>
+      <p id="loginSuccess" class="success-message">✅ Login Successful!</p>
+      <p class="switch-text">Don't have an account? <a href="#" id="toRegister">Register</a></p>
+    </div>
+  </div>
+
+  <!-- REGISTER MODAL -->
+  <div id="registerModal" class="modal">
+    <div class="modal-content auth-modal">
+      <span class="close-register">&times;</span>
+      <h2>Register</h2>
+      <form id="registerForm">
+        <label for="regUsername">Username</label>
+        <input type="text" id="regUsername" name="regUsername" placeholder="Enter username" required>
+
+        <label for="regEmail">Email</label>
+        <input type="email" id="regEmail" name="regEmail" placeholder="Enter email" required>
+
+        <label for="regPassword">Password</label>
+        <input type="password" id="regPassword" name="regPassword" placeholder="Enter password" required>
+
+        <label for="regConfirmPassword">Confirm Password</label>
+        <input type="password" id="regConfirmPassword" name="regConfirmPassword" placeholder="Confirm password" required>
+
+        <button type="submit">Register</button>
+      </form>
+      <p id="registerSuccess" class="success-message">✅ Registration Successful!</p>
+      <p class="switch-text">Already have an account? <a href="#" id="toLogin">Sign In</a></p>
+    </div>
+  </div>
+
+<div id="cartModal" class="modal">
+  <div class="modal-content cart-modal">
+    <span class="close-cart">&times;</span>
+    <h2>Your Basket</h2>
+    <p class="cart-service">Service: <span id="cartServiceLabel"></span></p>
+    <div id="cartItems"></div>
+    <p class="cart-total">Total: <span id="cartTotal">£0.00</span></p>
+    <button id="checkoutBtn" type="button">Checkout</button>
+  </div>
+</div>
+
+
+  <!-- INFO MODAL (history, favourites, settings, help etc.) -->
+  <div id="infoModal" class="modal">
+    <div class="modal-content info-modal">
+      <span class="close-info">&times;</span>
+      <h2 id="infoTitle"></h2>
+      <div id="infoBody"></div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/slider.js"></script>
+</body>
+</html>
+
+
+
+
+
+

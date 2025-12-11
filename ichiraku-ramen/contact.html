@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Ichiraku Ramen</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="contact-body">
+
+  <nav class="navbar">
+    <div class="nav-left">
+      <h1 class="logo">ICHIRAKU RAMEN</h1>
+      <div class="service-toggle">
+        <button class="service-btn active" data-service="delivery">Delivery</button>
+        <button class="service-btn" data-service="collection">Collection</button>
+      </div>
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+
+<div class="nav-right">
+  <!-- Cart -->
+  <button class="cart-icon" id="cartButton" aria-label="View basket">
+    🛒 <span id="cart-count">0</span>
+  </button>
+
+  <!-- Auth buttons -->
+  <button class="login-btn">Sign In</button>
+  <button class="register-btn">Register</button>
+
+  <!-- 3 dots menu ... (keep as you already have) -->
+  ...
+</div>
+
+
+      
+
+      <div class="dots-wrapper">
+        <button class="dots-menu" id="userMenuToggle">⋮</button>
+        <div class="user-menu" id="userMenu">
+          <button data-action="history">Order History</button>
+          <button data-action="favorites">Favorites</button>
+          <button data-action="theme">Dark / Light Mode</button>
+          <button data-action="settings">Settings</button>
+          <button data-action="help">Help & Support</button>
+          <button data-action="about">About</button>
+          <button data-action="logout" id="logoutItem" style="display:none;">Logout</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <header class="contact-hero">
+    <h2>Contact Us</h2>
+    <p>What can we help you with today?</p>
+  </header>
+
+  <main class="contact-main">
+    <!-- FAQ-style issues -->
+    <section class="contact-faq">
+      <h3>Common Questions</h3>
+
+      <div class="faq-item">
+        <button class="faq-question">I placed an order but didn't receive confirmation</button>
+        <div class="faq-answer">
+          <p>
+            If you haven't received an email or SMS, please check your spam folder.
+            If it’s still missing after 15 minutes, contact us using the form below and we’ll investigate.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">I have an issue with my order</button>
+        <div class="faq-answer">
+          <p>
+            We're sorry about that. Please include your order number and what went wrong, and our ninja support team will get back to you quickly.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Do you cater for allergies?</button>
+        <div class="faq-answer">
+          <p>
+            Some dishes can be adjusted for common allergens. Please tell us your requirements in advance and always check with staff in-store.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact form -->
+    <section class="contact-form-section" id="contact-form">
+      <h3>Send Us a Message</h3>
+      <form id="supportForm">
+        <div class="form-row">
+          <label for="contactName">Name</label>
+          <input type="text" id="contactName" required>
+        </div>
+
+        <div class="form-row">
+          <label for="contactEmail">Email</label>
+          <input type="email" id="contactEmail" required>
+        </div>
+
+        <div class="form-row">
+          <label for="contactType">Topic</label>
+          <select id="contactType" required>
+            <option value="">Select an option</option>
+            <option value="order-issue">Issue with an order</option>
+            <option value="feedback">Feedback</option>
+            <option value="allergy">Allergy / dietary question</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label for="contactMessage">Message</label>
+          <textarea id="contactMessage" rows="5" required></textarea>
+        </div>
+
+        <button type="submit">Submit</button>
+        <p id="supportSuccess" class="success-message">✅ Thanks, we'll get back to you soon!</p>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="about.html">About Us</a>
+      <a href="menu.html">Menu</a>
+      <a href="contact.html">Help & Support</a>
+    </div>
+    <p>© 2025 Ichiraku Ramen | Customer Care</p>
+  </footer>
+
+  <!-- shared modals -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content auth-modal">
+      <span class="close-login">&times;</span>
+      <h2>Sign In</h2>
+      <form id="loginForm">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+        <button type="submit">Sign In</button>
+      </form>
+      <p id="loginSuccess" class="success-message">✅ Login Successful!</p>
+      <p class="switch-text">Don't have an account? <a href="#" id="toRegister">Register</a></p>
+    </div>
+  </div>
+
+  <div id="registerModal" class="modal">
+    <div class="modal-content auth-modal">
+      <span class="close-register">&times;</span>
+      <h2>Register</h2>
+      <form id="registerForm">
+        <label for="regUsername">Username</label>
+        <input type="text" id="regUsername" name="regUsername" required>
+
+        <label for="regEmail">Email</label>
+        <input type="email" id="regEmail" name="regEmail" required>
+
+        <label for="regPassword">Password</label>
+        <input type="password" id="regPassword" name="regPassword" required>
+
+        <label for="regConfirmPassword">Confirm Password</label>
+        <input type="password" id="regConfirmPassword" name="regConfirmPassword" required>
+
+        <button type="submit">Register</button>
+      </form>
+      <p id="registerSuccess" class="success-message">✅ Registration Successful!</p>
+      <p class="switch-text">Already have an account? <a href="#" id="toLogin">Sign In</a></p>
+    </div>
+  </div>
+
+  <div id="cartModal" class="modal">
+  <div class="modal-content cart-modal">
+    <span class="close-cart">&times;</span>
+    <h2>Your Basket</h2>
+    <p class="cart-service">Service: <span id="cartServiceLabel"></span></p>
+    <div id="cartItems"></div>
+    <p class="cart-total">Total: <span id="cartTotal">£0.00</span></p>
+    <button id="checkoutBtn" type="button">Checkout</button>
+  </div>
+</div>
+
+
+  <div id="infoModal" class="modal">
+    <div class="modal-content info-modal">
+      <span class="close-info">&times;</span>
+      <h2 id="infoTitle"></h2>
+      <div id="infoBody"></div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
+

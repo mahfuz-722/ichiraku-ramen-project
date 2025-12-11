@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu | Ichiraku Ramen</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/menu.css">
+</head>
+<body>
+
+  <!-- SHARED NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <h1 class="logo">ICHIRAKU RAMEN</h1>
+      <div class="service-toggle" aria-label="Choose delivery or collection">
+        <button id="themeToggle" class="theme-toggle">🌙</button>
+
+        <button class="service-btn active" data-service="delivery">Delivery</button>
+        <button class="service-btn" data-service="collection">Collection</button>
+      </div>
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="gallery.html">Gallery</a></li>
+
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html" class="active">Menu</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+<div class="nav-right">
+  <!-- Cart -->
+  <button class="cart-icon" id="cartButton" aria-label="View basket">
+    🛒 <span id="cart-count">0</span>
+  </button>
+
+  <!-- Auth buttons -->
+  <button class="login-btn">Sign In</button>
+  <button class="register-btn">Register</button>
+
+  <!-- 3 dots menu ... (keep as you already have) -->
+  ...
+</div>
+
+
+      
+
+      <div class="dots-wrapper">
+        <button class="dots-menu" id="userMenuToggle">⋮</button>
+        <div class="user-menu" id="userMenu">
+          <button data-action="history">Order History</button>
+          <button data-action="favorites">Favorites</button>
+          <button data-action="theme">Dark / Light Mode</button>
+          <button data-action="settings">Settings</button>
+          <button data-action="help">Help & Support</button>
+          <button data-action="about">About</button>
+          <button data-action="logout" id="logoutItem" style="display:none;">Logout</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="menu-hero">
+    <h2>Our Menu</h2>
+    <p>Authentic Japanese Flavours Crafted Fresh Daily 🍜</p>
+  </section>
+
+  <!-- CATEGORY NAVIGATION -->
+  <section class="menu-categories">
+    <button class="category-btn active" data-category="all">All</button>
+    <button class="category-btn" data-category="ramen">Ramen</button>
+    <button class="category-btn" data-category="signature">Signature Ramen</button>
+    <button class="category-btn" data-category="vegan">Vegan Ramen</button>
+    <button class="category-btn" data-category="donburi">Rice Bowls</button>
+    <button class="category-btn" data-category="appetizers">Appetizers</button>
+    <button class="category-btn" data-category="drinks">Drinks</button>
+    <button class="category-btn" data-category="desserts">Desserts</button>
+  </section>
+
+  <!-- RAMEN -->
+  <section id="ramen" class="menu-section">
+    <h2>🍜 Classic Ramen</h2>
+    <div class="menu-grid">
+      <article class="menu-item" data-category="ramen" data-id="tonkotsu" data-name="Tonkotsu Ramen" data-price="13.99">
+        <img src="images/Tonkotsu Ramen.png" alt="Tonkotsu ramen">
+        <h3>Tonkotsu Ramen</h3>
+        <p>Rich pork bone broth, chashu, egg, bamboo shoots.</p>
+        <div class="card-bottom">
+          <span class="price">£13.99</span>
+          <div class="card-actions">
+            <button type="button" class="add-cart-btn">Add</button>
+            <button type="button" class="fav-btn" aria-label="Add to favourites">♡</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-item" data-category="ramen" data-id="miso" data-name="Miso Ramen" data-price="12.49">
+        <img src="images/ramen-miso.jpg" alt="Miso ramen">
+        <h3>Miso Ramen</h3>
+        <p>Savory miso broth with buttery corn and bean sprouts.</p>
+        <div class="card-bottom">
+          <span class="price">£12.49</span>
+          <div class="card-actions">
+            <button type="button" class="add-cart-btn">Add</button>
+            <button type="button" class="fav-btn">♡</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-item" data-category="ramen" data-id="shoyu" data-name="Shoyu Ramen" data-price="11.99">
+        <img src="images/ramen-shoyu.jpg" alt="Shoyu ramen">
+        <h3>Shoyu Ramen</h3>
+        <p>Soy sauce broth, soft-boiled egg, spring onions.</p>
+        <div class="card-bottom">
+          <span class="price">£11.99</span>
+          <div class="card-actions">
+            <button type="button" class="add-cart-btn">Add</button>
+            <button type="button" class="fav-btn">♡</button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- SIGNATURE -->
+  <section id="signature" class="menu-section">
+    <h2>🔥 Signature Ramen</h2>
+    <div class="menu-grid">
+      <article class="menu-item" data-category="signature" data-id="blackgarlic" data-name="Black Garlic Ramen" data-price="14.99">
+        <img src="images/ramen-blackgarlic.jpeg" alt="Black garlic ramen">
+        <h3>Black Garlic Ramen</h3>
+        <p>Roasted garlic oil, silky broth, premium chashu.</p>
+        <div class="card-bottom">
+          <span class="price">£14.99</span>
+          <div class="card-actions">
+            <button type="button" class="add-cart-btn">Add</button>
+            <button type="button" class="fav-btn">♡</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-item" data-category="signature" data-id="hellfire" data-name="Spicy Hellfire Ramen" data-price="14.49">
+        <img src="images/ramen-spicy.jpeg" alt="Spicy ramen">
+        <h3>Spicy Hellfire Ramen</h3>
+        <p>Extra spicy broth with chili oil & minced pork.</p>
+        <div class="card-bottom">
+          <span class="price">£14.49</span>
+          <div class="card-actions">
+            <button type="button" class="add-cart-btn">Add</button>
+            <button type="button" class="fav-btn">♡</button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- VEGAN -->
+  <section id="vegan" class="menu-section">
+    <h2>🌱 Vegan Ramen</h2>
+    <div class="menu-grid">
+      <article class="menu-item" data-category="vegan" data-id="veganmiso" data-name="Vegan Miso Ramen" data-price="11.99">
+        <img src="images/ramen-vegan-miso.jpeg" alt="Vegan miso ramen">
+        <h3>Vegan Miso Ramen</h3>
+        <p>Plant-based broth, tofu, mushrooms, greens.</p>
+        <div class="card-bottom">
+          <span class="price">£11.99</span>
+          <div class="card-actions">
+            <button type="button" class="add-cart-btn">Add</button>
+            <button type="button" class="fav-btn">♡</button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- DONBURI -->
+  <section id="donburi" class="menu-section">
+    <h2>🍱 Rice Bowls (Donburi)</h2>
+    <div class="menu-grid">
+      <article class="menu-item" data-category="donburi" data-id="gyudon" data-name="Gyudon" data-price="10.99">
+        <img src="images/donburi-gyudon.jpeg" alt="Gyudon rice bowl">
+        <h3>Gyudon</h3>
+        <p>Beef slices simmered in sweet soy sauce.</p>
+        <div class="card-bottom">
+          <span class="price">£10.99</span>
+          <div class="card-actions">
+            <button type="button" class="add-cart-btn">Add</button>
+            <button type="button" class="fav-btn">♡</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-item" data-category="donburi" data-id="katsudon" data-name="Katsudon" data-price="11.49">
+        <img src="images/donburi-katsu.jpg" alt="Katsudon rice bowl">
+        <h3>Katsudon</h3>
+        <p>Crispy pork cutlet bowl with eggs.</p>
+        <div class="card-bottom">
+          <span class="price">£11.49</span>
+          <div class="card-actions">
+            <button type="button" class="add-cart-btn">Add</button>
+            <button type="button" class="fav-btn">♡</button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- APPETIZERS -->
+  <section id="appetizers" class="menu-section">
+    <h2>🥟 Appetizers</h2>
+    <div class="menu-grid">
+      <article class="menu-item" data-category="appetizers" data-id="gyoza" data-name="Gyoza" data-price="5.99">
+        <img src="images/appetizer-gyoza.jpg" alt="Gyoza dumplings">
+        <h3>Gyoza</h3>
+        <p>Pan-fried dumplings filled with pork & cabbage.</p>
+        <div class="card-bottom">
+          <span class="price">£5.99</span>
+          <div class="card-actions">
+            <button type="button" class="add-cart-btn">Add</button>
+            <button type="button" class="fav-btn">♡</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-item" data-category="appetizers" data-id="karaage" data-name="Chicken Karaage" data-price="6.49">
+        <img src="images/appetizer-karaage.png" alt="Chicken karaage">
+        <h3>Chicken Karaage</h3>
+        <p>Japanese-style crispy fried chicken.</p>
+        <div class="card-bottom">
+          <span class="price">£6.49</span>
+          <div class="card-actions">
+            <button type="button" class="add-cart-btn">Add</button>
+            <button type="button" class="fav-btn">♡</button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- DRINKS -->
+  <section id="drinks" class="menu-section">
+    <h2>🥤 Drinks</h2>
+    <div class="menu-grid">
+      <article class="menu-item" data-category="drinks" data-id="ramune" data-name="Ramune Soda" data-price="2.99">
+        <img src="images/ramunedrink.png" alt="Ramune soda bottle">
+        <h3>Ramune Soda</h3>
+        <div class="card-bottom">
+          <span class="price">£2.99</span>
+          <div class="card-actions">
+            <button type="button" class="add-cart-btn">Add</button>
+            <button type="button" class="fav-btn">♡</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-item" data-category="drinks" data-id="greentea" data-name="Japanese Green Tea" data-price="1.99">
+        <img src="images/drink-greentea.jpg" alt="Japanese green tea">
+        <h3>Japanese Green Tea</h3>
+        <div class="card-bottom">
+          <span class="price">£1.99</span>
+          <div class="card-actions">
+            <button type="button" class="add-cart-btn">Add</button>
+            <button type="button" class="fav-btn">♡</button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- DESSERTS -->
+  <section id="desserts" class="menu-section">
+    <h2>🍰 Desserts</h2>
+    <div class="menu-grid">
+      <article class="menu-item" data-category="desserts" data-id="mochi" data-name="Mochi Ice Cream" data-price="4.99">
+        <img src="images/dessert-mochi.jpg" alt="Mochi ice cream">
+        <h3>Mochi Ice Cream</h3>
+        <div class="card-bottom">
+          <span class="price">£4.99</span>
+          <div class="card-actions">
+            <button type="button" class="add-cart-btn">Add</button>
+            <button type="button" class="fav-btn">♡</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-item" data-category="desserts" data-id="cheesecake" data-name="Tokyo Cheesecake" data-price="5.49">
+        <img src="images/dessert-cheesecake.jpg" alt="Tokyo cheesecake">
+        <h3>Tokyo Cheesecake</h3>
+        <div class="card-bottom">
+          <span class="price">£5.49</span>
+          <div class="card-actions">
+            <button type="button" class="add-cart-btn">Add</button>
+            <button type="button" class="fav-btn">♡</button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Ichiraku Ramen | Designed for Client-Side Development Coursework</p>
+  </footer>
+
+  <!-- SHARED MODALS (same structure as index for JS to work) -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content auth-modal">
+      <span class="close-login">&times;</span>
+      <h2>Sign In</h2>
+      <form id="loginForm">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+        <button type="submit">Sign In</button>
+      </form>
+      <p id="loginSuccess" class="success-message">✅ Login Successful!</p>
+      <p class="switch-text">Don't have an account? <a href="#" id="toRegister">Register</a></p>
+    </div>
+  </div>
+
+  <div id="registerModal" class="modal">
+    <div class="modal-content auth-modal">
+      <span class="close-register">&times;</span>
+      <h2>Register</h2>
+      <form id="registerForm">
+        <label for="regUsername">Username</label>
+        <input type="text" id="regUsername" name="regUsername" required>
+
+        <label for="regEmail">Email</label>
+        <input type="email" id="regEmail" name="regEmail" required>
+
+        <label for="regPassword">Password</label>
+        <input type="password" id="regPassword" name="regPassword" required>
+
+        <label for="regConfirmPassword">Confirm Password</label>
+        <input type="password" id="regConfirmPassword" name="regConfirmPassword" required>
+
+        <button type="submit">Register</button>
+      </form>
+      <p id="registerSuccess" class="success-message">✅ Registration Successful!</p>
+      <p class="switch-text">Already have an account? <a href="#" id="toLogin">Sign In</a></p>
+    </div>
+  </div>
+
+  <div id="cartModal" class="modal">
+  <div class="modal-content cart-modal">
+    <span class="close-cart">&times;</span>
+    <h2>Your Basket</h2>
+    <p class="cart-service">Service: <span id="cartServiceLabel"></span></p>
+    <div id="cartItems"></div>
+    <p class="cart-total">Total: <span id="cartTotal">£0.00</span></p>
+    <button id="checkoutBtn" type="button">Checkout</button>
+  </div>
+</div>
+
+
+  <div id="infoModal" class="modal">
+    <div class="modal-content info-modal">
+      <span class="close-info">&times;</span>
+      <h2 id="infoTitle"></h2>
+      <div id="infoBody"></div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
+
+

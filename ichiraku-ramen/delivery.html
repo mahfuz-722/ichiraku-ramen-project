@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Delivery | Ichiraku Ramen</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- SAME NAVBAR AS HOME -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <h1 class="logo">ICHIRAKU RAMEN</h1>
+
+      <div class="service-toggle" aria-label="Choose delivery or collection">
+        <button id="themeToggle" class="theme-toggle">🌙</button>
+        <button class="service-btn active" data-service="delivery">Delivery</button>
+        <button class="service-btn" data-service="collection">Collection</button>
+      </div>
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <button class="cart-icon" id="cartButton">
+        🛒 <span id="cart-count">0</span>
+      </button>
+
+      <button class="login-btn">Sign In</button>
+      <button class="register-btn">Register</button>
+
+      <div class="dots-wrapper">
+        <button class="dots-menu" id="userMenuToggle" aria-haspopup="true" aria-expanded="false">⋮</button>
+        <div class="user-menu" id="userMenu">
+          <button data-action="history">Order History</button>
+          <button data-action="favorites">Favorites</button>
+          <button data-action="theme">Dark / Light Mode</button>
+          <button data-action="settings">Settings</button>
+          <button data-action="help">Help & Support</button>
+          <button data-action="about">About</button>
+          <button data-action="logout" id="logoutItem" style="display:none;">Logout</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="service-page">
+    <section class="service-hero">
+      <h2>Delivery</h2>
+      <p>Get Ichiraku ramen sent straight to your village 🍜🚚</p>
+    </section>
+
+    <section class="service-form-card">
+      <h3>Enter your delivery details</h3>
+      <form id="deliveryForm" novalidate>
+        <div class="form-row">
+          <label for="delPostcode">Postcode</label>
+          <input type="text" id="delPostcode" required placeholder="e.g. BT37 0QB">
+        </div>
+
+        <div class="form-row">
+          <label for="delName">Full Name</label>
+          <input type="text" id="delName" required placeholder="Naruto Uzumaki">
+        </div>
+
+        <div class="form-row">
+          <label for="delEmail">Email</label>
+          <input type="email" id="delEmail" required placeholder="hero@example.com">
+        </div>
+
+        <div class="form-row">
+          <label for="delPhone">Phone Number</label>
+          <input type="tel" id="delPhone" required placeholder="+44 0000 000000">
+        </div>
+
+        <div class="form-row">
+          <label for="delAddress1">Address Line 1</label>
+          <input type="text" id="delAddress1" required placeholder="Ramen Street 1">
+        </div>
+
+        <div class="form-row">
+          <label for="delAddress2">Address Line 2 (optional)</label>
+          <input type="text" id="delAddress2" placeholder="Apartment / Building">
+        </div>
+
+        <div class="form-row">
+          <label for="delCity">City / Village</label>
+          <input type="text" id="delCity" required placeholder="Hidden Leaf Village">
+        </div>
+
+        <div class="form-row">
+          <label for="delNotes">Delivery Notes (optional)</label>
+          <textarea id="delNotes" rows="3" placeholder="Gate code, allergies, extra info..."></textarea>
+        </div>
+
+        <button type="submit">Save & Start Order</button>
+        <p class="success-message" id="deliverySuccess">
+          ✅ Delivery details saved! Now choose your ramen from the menu.
+        </p>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="about.html">About Us</a>
+      <a href="menu.html">Menu</a>
+      <a href="contact.html">Help & Support</a>
+    </div>
+    <p>© 2025 Ichiraku Ramen | The Way of Ninja Food 🍜⚡</p>
+  </footer>
+
+  <!-- Shared JS (nav, auth, cart, theme, etc.) -->
+  <script src="js/main.js"></script>
+
+  <!-- Page-specific script -->
+  <script>
+    const deliveryForm = document.getElementById('deliveryForm');
+    const deliverySuccess = document.getElementById('deliverySuccess');
+
+    if (deliveryForm) {
+      deliveryForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const requiredIds = ['delPostcode','delName','delEmail','delPhone','delAddress1','delCity'];
+        const missing = requiredIds.some(id => {
+          const el = document.getElementById(id);
+          return !el || !el.value.trim();
+        });
+
+        if (missing) {
+          alert('⚠️ Please fill in all required delivery details.');
+          return;
+        }
+
+        // Save to localStorage so you can use it on payment page if you want
+        const details = {
+          postcode: document.getElementById('delPostcode').value.trim(),
+          name: document.getElementById('delName').value.trim(),
+          email: document.getElementById('delEmail').value.trim(),
+          phone: document.getElementById('delPhone').value.trim(),
+          address1: document.getElementById('delAddress1').value.trim(),
+          address2: document.getElementById('delAddress2').value.trim(),
+          city: document.getElementById('delCity').value.trim(),
+          notes: document.getElementById('delNotes').value.trim()
+        };
+        localStorage.setItem('ichirakuDeliveryDetails', JSON.stringify(details));
+        localStorage.setItem('ichirakuService', JSON.stringify('delivery'));
+
+        deliverySuccess.style.display = 'block';
+
+        setTimeout(() => {
+          window.location.href = 'menu.html';
+        }, 1800);
+      });
+    }
+  </script>
+</body>
+</html>

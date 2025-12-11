@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Collection | Ichiraku Ramen</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- SAME NAVBAR AS HOME -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <h1 class="logo">ICHIRAKU RAMEN</h1>
+
+      <div class="service-toggle" aria-label="Choose delivery or collection">
+        <button id="themeToggle" class="theme-toggle">🌙</button>
+        <button class="service-btn" data-service="delivery">Delivery</button>
+        <button class="service-btn active" data-service="collection">Collection</button>
+      </div>
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <button class="cart-icon" id="cartButton">
+        🛒 <span id="cart-count">0</span>
+      </button>
+
+      <button class="login-btn">Sign In</button>
+      <button class="register-btn">Register</button>
+
+      <div class="dots-wrapper">
+        <button class="dots-menu" id="userMenuToggle" aria-haspopup="true" aria-expanded="false">⋮</button>
+        <div class="user-menu" id="userMenu">
+          <button data-action="history">Order History</button>
+          <button data-action="favorites">Favorites</button>
+          <button data-action="theme">Dark / Light Mode</button>
+          <button data-action="settings">Settings</button>
+          <button data-action="help">Help & Support</button>
+          <button data-action="about">About</button>
+          <button data-action="logout" id="logoutItem" style="display:none;">Logout</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="service-page">
+    <section class="service-hero">
+      <h2>Collection</h2>
+      <p>Pick up your ramen from your favourite Ichiraku store 🍜🛵</p>
+    </section>
+
+    <section class="service-form-card">
+      <h3>Select a store & time</h3>
+
+      <form id="collectionForm" novalidate>
+        <div class="form-row">
+          <label for="colPostcode">Postcode</label>
+          <input type="text" id="colPostcode" required placeholder="e.g. BT37 0QB">
+        </div>
+
+        <div class="form-row">
+          <label for="colStore">Choose Store</label>
+          <select id="colStore" required>
+            <option value="">-- Select your store --</option>
+            <option value="leaf-main">Ichiraku - Hidden Leaf Main</option>
+            <option value="leaf-east">Ichiraku - Hidden Leaf East</option>
+            <option value="sand">Ichiraku - Sand Village</option>
+            <option value="mist">Ichiraku - Mist Village</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label for="colName">Full Name</label>
+          <input type="text" id="colName" required placeholder="Sasuke Uchiha">
+        </div>
+
+        <div class="form-row">
+          <label for="colPhone">Phone Number</label>
+          <input type="tel" id="colPhone" required placeholder="+44 0000 000000">
+        </div>
+
+        <div class="form-row">
+          <label for="colTime">Collection Time</label>
+          <input type="time" id="colTime" required>
+        </div>
+
+        <button type="submit">Save & Start Order</button>
+        <p class="success-message" id="collectionSuccess">
+          ✅ Collection details saved! Now choose your ramen from the menu.
+        </p>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="about.html">About Us</a>
+      <a href="menu.html">Menu</a>
+      <a href="contact.html">Help & Support</a>
+    </div>
+    <p>© 2025 Ichiraku Ramen | The Way of Ninja Food 🍜⚡</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+
+  <script>
+    const collectionForm = document.getElementById('collectionForm');
+    const collectionSuccess = document.getElementById('collectionSuccess');
+
+    if (collectionForm) {
+      collectionForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const requiredIds = ['colPostcode','colStore','colName','colPhone','colTime'];
+        const missing = requiredIds.some(id => {
+          const el = document.getElementById(id);
+          return !el || !el.value.trim();
+        });
+
+        if (missing) {
+          alert('⚠️ Please fill in all required collection details.');
+          return;
+        }
+
+        const details = {
+          postcode: document.getElementById('colPostcode').value.trim(),
+          store: document.getElementById('colStore').value,
+          name: document.getElementById('colName').value.trim(),
+          phone: document.getElementById('colPhone').value.trim(),
+          time: document.getElementById('colTime').value
+        };
+        localStorage.setItem('ichirakuCollectionDetails', JSON.stringify(details));
+        localStorage.setItem('ichirakuService', JSON.stringify('collection'));
+
+        collectionSuccess.style.display = 'block';
+
+        setTimeout(() => {
+          window.location.href = 'menu.html';
+        }, 1800);
+      });
+    }
+  </script>
+</body>
+</html>

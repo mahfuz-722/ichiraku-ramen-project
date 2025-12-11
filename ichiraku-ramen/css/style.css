@@ -1,0 +1,1031 @@
+:root {
+  --bg-main: #000;
+  --bg-card: #111;
+  --text-main: #fff;
+  --text-secondary: #e0e0e0;
+  --border-color: #ff0033;
+}
+
+.light-mode {
+  --bg-main: #ffffff;
+  --bg-card: #f4f4f4;
+  --text-main: #000000;
+  --text-secondary: #333333;
+  --border-color: #ff0033;
+}
+
+/* === RESET & GLOBAL === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #000;
+  font-family: 'Noto Sans JP', sans-serif;
+  color: #f5f5f5;
+  overflow-x: hidden;
+  line-height: 1.5;
+}
+
+body.light-mode {
+  background: #f5f5f5;
+  color: #222;
+}
+
+/* === NAVBAR === */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.9);
+  padding: 10px 40px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 0 20px #ff0033;
+}
+
+body.light-mode .navbar {
+  background: #ffffff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.6rem;
+  color: #ff0033;
+  text-shadow: 0 0 12px #ff0033, 0 0 25px #f9c80e;
+  animation: flicker 3s infinite;
+}
+
+/* Delivery / Collection toggle */
+.service-toggle {
+  display: flex;
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid #00bcd4;
+}
+
+.service-btn {
+  background: transparent;
+  color: #00ffff;
+  border: none;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.service-btn.active {
+  background: #00bcd4;
+  color: #000;
+}
+.theme-toggle {
+  background: #222;
+  color: #fff;
+  border: 1px solid #444;
+  padding: 6px 10px;
+  font-size: 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.theme-toggle:hover {
+  background: #000;
+  box-shadow: 0 0 10px #00ffff;
+}
+
+body.light-mode .service-btn {
+  color: #00796b;
+}
+
+body.light-mode .service-btn.active {
+  background: #00796b;
+  color: #fff;
+}
+
+/* Nav links */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffff;
+}
+
+body.light-mode .nav-links a {
+  color: #333;
+}
+
+body.light-mode .nav-links a:hover,
+body.light-mode .nav-links a.active {
+  color: #ff0033;
+  text-shadow: none;
+}
+
+/* Right side */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cart-icon {
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  border: 1px solid #ff0033;
+  padding: 6px 14px;
+  cursor: pointer;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cart-icon:hover {
+  box-shadow: 0 0 12px #ff0033;
+}
+
+body.light-mode .cart-icon {
+  background: #fff;
+  color: #000;
+}
+
+/* Auth buttons */
+.login-btn,
+.register-btn {
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.login-btn {
+  background: #ff0033;
+  color: #fff;
+}
+
+.register-btn {
+  background: linear-gradient(90deg, #ff0033, #f9c80e);
+  color: #000;
+}
+
+.login-btn:hover,
+.register-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 12px #f9c80e;
+}
+
+/* 3 dots and dropdown */
+.dots-wrapper {
+  position: relative;
+}
+
+.dots-menu {
+  font-size: 24px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  color: #fff;
+}
+
+.dots-menu:hover {
+  color: #00ffff;
+}
+
+body.light-mode .dots-menu {
+  color: #333;
+}
+
+.user-menu {
+  position: absolute;
+  right: 0;
+  top: 130%;
+  background: #111;
+  border-radius: 8px;
+  border: 1px solid #333;
+  min-width: 170px;
+  padding: 6px 0;
+  display: none;
+  z-index: 1200;
+}
+
+body.light-mode .user-menu {
+  background: #fff;
+  border-color: #ddd;
+}
+
+.user-menu button {
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
+  text-align: left;
+  background: none;
+  border: none;
+  color: #f5f5f5;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.user-menu button:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+body.light-mode .user-menu button {
+  color: #333;
+}
+
+/* === HERO (HOME) === */
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: url("../images/bg.jpg") center/cover no-repeat;
+  margin-top: 60px;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.content {
+  z-index: 10;
+  padding: 0 20px;
+}
+
+#typing-text {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 4rem;
+  color: #f9c80e;
+  text-shadow: 0 0 20px #ff0033, 0 0 40px #f9c80e;
+}
+
+#greeting {
+  font-size: 1.4rem;
+  color: #00ffff;
+  margin: 10px 0 25px;
+}
+
+button {
+  background: linear-gradient(90deg, #ff0033, #f9c80e);
+  border: none;
+  padding: 14px 35px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: bold;
+  transition: .3s;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+/* Floating ramen */
+.ramen {
+  position: absolute;
+  width: 120px;
+  opacity: .9;
+  animation: float 6s infinite ease-in-out;
+}
+
+.ramen1 { top: 65%; left: 4%; }
+.ramen2 { top: 18%; right: 10%; width: 150px; animation-delay: 2s; }
+.ramen3 { bottom: 10%; left: 40%; width: 140px; animation-delay: 4s; }
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(-25px); }
+}
+
+/* Promo banner & slider */
+.promo-banner {
+  width: 100%;
+  text-align: center;
+  margin: 30px auto 10px;
+}
+
+.promo-banner img {
+  width: 100%;
+  max-height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Slider */
+.slider {
+  width: 100%;
+  height: 65vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.slides {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.slides img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(70%);
+}
+
+.slide-text {
+  position: absolute;
+  bottom: 20%;
+  left: 10%;
+  color: #fff;
+  font-family: 'Bebas Neue', sans-serif;
+  text-shadow: 0 0 20px #ff0033;
+}
+
+.slide-text h2 {
+  font-size: 3.2rem;
+}
+
+.fade {
+  animation: fadeEffect 1.3s;
+}
+
+@keyframes fadeEffect {
+  from { opacity: 0.3; }
+  to   { opacity: 1; }
+}
+
+/* === REVIEWS STRIP === */
+.reviews {
+  padding: 3rem 2rem 2rem;
+  text-align: center;
+}
+
+.reviews h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.4rem;
+  margin-bottom: 1.4rem;
+  color: #f9c80e;
+}
+
+.review-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.review-grid article {
+  background: rgba(0,0,0,0.8);
+  border-radius: 12px;
+  padding: 1.2rem;
+  border: 1px solid #ff0033;
+}
+
+.review-grid span {
+  font-size: 0.9rem;
+  color: #00ffff;
+}
+
+/* light mode */
+body.light-mode .reviews {
+  color: #222;
+}
+
+body.light-mode .review-grid article {
+  background: #ffffff;
+  border-color: #eee;
+}
+
+/* === ABOUT PAGE SECTIONS === */
+.about-hero {
+  padding-top: 120px;
+  text-align: center;
+  padding-bottom: 40px;
+}
+
+.about-hero h2 {
+  font-family: 'Bebas Neue';
+  font-size: 2.8rem;
+  color: #f9c80e;
+}
+
+.about-main {
+  max-width: 1000px;
+  margin: 0 auto 3rem;
+  padding: 0 1.5rem;
+}
+
+.about-intro {
+  margin-bottom: 2rem;
+}
+
+.about-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+  gap: 1.5rem;
+}
+
+.about-cards article {
+  background: var(--bg-card);
+color: var(--text-main);
+  border-radius: 12px;
+  padding: 1.2rem;
+  border: 1px solid #ff0033;
+}
+
+/* === CONTACT PAGE === */
+.contact-hero {
+  padding-top: 120px;
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.contact-main {
+  max-width: 1000px;
+  margin: 0 auto 3rem;
+  padding: 0 1.5rem;
+  display: grid;
+  grid-template-columns: 1.2fr 1.1fr;
+  gap: 2rem;
+}
+
+.contact-faq h3,
+.contact-form-section h3 {
+  font-family: 'Bebas Neue';
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* FAQ accordion */
+.faq-item {
+  margin-bottom: 1rem;
+}
+
+.faq-question {
+  width: 100%;
+  text-align: left;
+  background: #111;
+  color: #fff;
+  padding: 0.8rem 1rem;
+  border-radius: 6px;
+  border: 1px solid #333;
+}
+
+.faq-answer {
+  display: none;
+  padding: 0.7rem 1rem 0.8rem;
+}
+
+/* contact form */
+.contact-form-section form {
+  background: var(--bg-card);
+  color: var(--text-main);
+}
+
+input, textarea, select {
+  background: var(--input-bg);
+  color: var(--input-text);
+  border: 1px solid #777;
+}
+
+
+.form-row {
+  margin-bottom: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+input, textarea, select {
+  padding: 0.6rem 0.7rem;
+  border-radius: 6px;
+  border: 1px solid #555;
+  background: #111;
+  color: #fff;
+}
+
+textarea {
+  resize: vertical;
+}
+
+/* success message */
+.success-message {
+  display: none;
+  margin-top: 10px;
+  color: #00e676;
+  font-weight: bold;
+}
+
+/* === FOOTER === */
+footer {
+  background: #0c0c0c;
+  padding: 25px 0;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-bottom: 12px;
+}
+
+.footer-links a {
+  color: #f9c80e;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.footer-links a:hover {
+  color:#00ffff;
+  text-shadow:0 0 10px #00ffff;
+}
+
+body.light-mode footer {
+  background: #222;
+}
+
+/* === MODALS === */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.6);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 8% auto;
+  padding: 30px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 450px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.35);
+  position: relative;
+}
+
+.modal-content input {
+  background: #ffffff !important;
+  color: #000 !important;
+}
+
+.modal-content input::placeholder {
+  color: #555 !important;
+}
+
+
+.auth-modal h2,
+.cart-modal h2,
+.info-modal h2 {
+  font-family: 'Bebas Neue';
+  margin-bottom: 12px;
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="password"],
+.modal-content input[type="email"] {
+  width: 100%;
+  padding: 12px 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.modal-content button {
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* close buttons */
+.close-login,
+.close-register,
+.close-cart,
+.close-info {
+  position: absolute;
+  right: 16px;
+  top: 12px;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+/* cart modal content */
+#cartItems {
+  max-height: 260px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+}
+
+.cart-item-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  font-size: 0.95rem;
+}
+
+.cart-total {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 900px) {
+  .navbar {
+    padding: 10px 20px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .nav-links {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .nav-right {
+    order: 2;
+  }
+
+  #typing-text {
+    font-size: 2.8rem;
+  }
+
+  .slide-text h2 {
+    font-size: 2.4rem;
+  }
+
+  .ramen {
+    width: 90px;
+  }
+
+  .contact-main {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero {
+    height: auto;
+    padding: 80px 15px 60px;
+  }
+
+  .ramen {
+    display: none;
+  }
+
+  .slider {
+    height: 50vh;
+  }
+
+  .slide-text {
+    bottom: 15%;
+    left: 6%;
+  }
+
+  .slide-text h2 {
+    font-size: 2rem;
+  }
+}
+
+/* LIGHT MODE OVERRIDES */
+body.light-mode {
+  background: #f8f8f8;
+  color: #222;
+}
+
+/* navbar */
+body.light-mode .navbar {
+  background: #ffffff;
+  box-shadow: 0 0 10px #ccc;
+}
+
+body.light-mode .nav-links a {
+  color: #222;
+}
+
+body.light-mode .nav-links a:hover {
+  color: #ff0033;
+}
+
+/* modal readable */
+body.light-mode .modal-content {
+  background: #fff;
+}
+
+body.light-mode footer {
+  background: #efefef;
+  color: #222;
+}
+
+.gallery-section {
+  padding: 140px 40px 60px;
+  text-align: center;
+}
+
+.gallery-section h2 {
+  font-family: 'Bebas Neue';
+  color: var(--text-main);
+  font-size: 3rem;
+}
+
+.gallery-section p {
+  color: var(--text-secondary);
+  margin-bottom: 30px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+}
+
+.gallery-grid img {
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+  height: 220px;
+  border: 2px solid var(--border-color);
+  transition: 0.3s;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px var(--border-color);
+}
+
+
+/* Toast: item added to basket */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0,0,0,0.9);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  z-index: 2000;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 0 10px rgba(255,0,51,0.5);
+}
+.toast.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Dark cart modal background */
+.cart-modal {
+  background: #111 !important;
+  color: #fff;
+}
+.cart-item-row,
+.order-item-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+.cart-service {
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+.cart-item-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.cart-qty-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.qty-btn {
+  background: #222;
+  border: 1px solid #ff0033;
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.qty-btn:hover {
+  background: #ff0033;
+}
+/* ==== SERVICE PAGES (DELIVERY / COLLECTION) ==== */
+
+.service-page {
+  padding-top: 110px; /* below navbar */
+  padding-bottom: 40px;
+}
+
+.service-hero {
+  text-align: center;
+  padding: 30px 20px 10px;
+}
+
+.service-hero h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3rem;
+  color: #f9c80e;
+  text-shadow: 0 0 10px #ff0033, 0 0 25px #f9c80e;
+}
+
+.service-hero p {
+  color: #00ffff;
+  margin-top: 8px;
+}
+
+.service-form-card {
+  max-width: 700px;
+  margin: 20px auto 0;
+  background: rgba(0,0,0,0.85);
+  border-radius: 16px;
+  border: 1px solid #333;
+  padding: 20px 22px;
+  box-shadow: 0 0 18px rgba(255,0,51,0.35);
+}
+
+.service-form-card h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+  color: #f9c80e;
+}
+
+.service-form-card .form-row {
+  margin-bottom: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.service-form-card label {
+  font-size: 0.95rem;
+}
+
+.service-form-card input,
+.service-form-card textarea,
+.service-form-card select {
+  padding: 0.6rem 0.7rem;
+  border-radius: 6px;
+  border: 1px solid #555;
+  background: #111;
+  color: #fff;
+}
+
+.service-form-card textarea {
+  resize: vertical;
+}
+
+/* success messages reuse your existing .success-message */
+.service-form-card .success-message {
+  margin-top: 10px;
+}
+
+/* make sure it works in LIGHT MODE too */
+.light-mode .service-form-card {
+  background: #ffffff;
+  color: #111;
+  border-color: #ddd;
+  box-shadow: 0 0 15px rgba(0,0,0,0.15);
+}
+
+.light-mode .service-form-card input,
+.light-mode .service-form-card textarea,
+.light-mode .service-form-card select {
+  background: #f5f5f5;
+  color: #111;
+  border-color: #ccc;
+}
+
+/* === INFO MODAL FIX (HISTORY, FAVORITES, SETTINGS, HELP, ABOUT) === */
+
+.info-modal {
+  background: var(--modal-bg);
+  color: var(--modal-text);
+  border: 1px solid #444;
+  border-radius: 12px;
+  padding: 20px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+/* Close button inside info modal */
+.close-info {
+  float: right;
+  font-size: 26px;
+  cursor: pointer;
+  color: var(--modal-text);
+}
+
+.close-info:hover {
+  color: #f9c80e;
+}
+
+/* Light/Dark mode variables */
+:root {
+  --modal-bg: rgba(0,0,0,0.85);
+  --modal-text: #ffffff;
+}
+
+.light-mode {
+  --modal-bg: #ffffff;
+  --modal-text: #000000;
+}
+
+/* UL list styling inside modal */
+.info-modal ul {
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+.info-modal li {
+  margin-bottom: 8px;
+}
+
+/* === FIX LOGIN & REGISTER MODAL BACKGROUND VISIBILITY === */
+
+.auth-modal {
+  background: rgba(0, 0, 0, 0.88) !important;
+  color: #fff !important;
+  border: 1px solid #444;
+}
+
+.auth-modal h2 {
+  color: #f9c80e !important;
+}
+
+.auth-modal label {
+  color: #00ffff !important;
+  font-weight: 600;
+}
+
+.auth-modal input {
+  background: #111 !important;
+  color: #fff !important;
+  border: 1px solid #555 !important;
+}
+
+.auth-modal button {
+  background: #ff0033 !important;
+  color: #fff !important;
+  border: none;
+}
+
+.auth-modal button:hover {
+  background: #cc0029 !important;
+}
+
+/* Success message inside modal */
+.auth-modal .success-message {
+  color: #00e676 !important;
+}
+
+/* Make modal overlay darker so text always visible */
+.modal {
+  background: rgba(0, 0, 0, 0.65) !important;
+}

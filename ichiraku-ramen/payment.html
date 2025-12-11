@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Payment | Ichiraku Ramen</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Fonts (same as other pages) -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Main styles -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* Extra payment page layout (small, safe additions) */
+    .payment-wrapper {
+      max-width: 900px;
+      margin: 120px auto 60px;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+      gap: 20px;
+    }
+
+    .payment-card {
+      background: rgba(0,0,0,0.85);
+      border-radius: 16px;
+      padding: 20px;
+      border: 1px solid #333;
+    }
+
+    .payment-card h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: #f9c80e;
+    }
+
+    .payment-card label {
+      display: block;
+      margin-top: 10px;
+      font-size: 0.95rem;
+    }
+
+    .payment-card input,
+    .payment-card select {
+      width: 100%;
+      margin-top: 4px;
+      padding: 8px 10px;
+      border-radius: 6px;
+      border: 1px solid #555;
+      background: #111;
+      color: #fff;
+    }
+
+    .payment-row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .payment-row > div {
+      flex: 1;
+    }
+
+    .delivery-options {
+      display: flex;
+      gap: 15px;
+      margin-top: 8px;
+      font-size: 0.95rem;
+    }
+
+    .delivery-options label {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+    }
+
+    .order-summary-list {
+      margin-top: 10px;
+      font-size: 0.95rem;
+    }
+
+    .order-summary-list p {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+
+    .order-total {
+      margin-top: 10px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      color: #f9c80e;
+    }
+
+    .confirm-message {
+      margin-top: 12px;
+      color: #00e676;
+      font-weight: bold;
+      display: none;
+    }
+
+    .back-link {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .back-link a {
+      color: #00ffff;
+      text-decoration: none;
+    }
+
+    .back-link a:hover {
+      text-shadow: 0 0 8px #00ffff;
+    }
+
+    @media (max-width: 800px) {
+      .payment-wrapper {
+        grid-template-columns: 1fr;
+        margin-top: 110px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SAME NAVBAR AS OTHER PAGES -->
+  <nav class="navbar">
+    <h1 class="logo">ICHIRAKU RAMEN</h1>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-controls">
+      <button class="login-btn">Sign In</button>
+      <button class="register-btn">Register</button>
+    
+    </div>
+  </nav>
+
+  <div class="back-link">
+    <a href="menu.html">← Back to menu</a>
+  </div>
+
+  <main class="payment-wrapper">
+    <!-- LEFT: PAYMENT FORM -->
+    <section class="payment-card">
+      <h2>Checkout</h2>
+      <p style="margin-bottom:10px;">Complete your order securely. 🍜</p>
+
+      <form id="paymentForm" novalidate>
+        <!-- Delivery / Collection -->
+        <label>Order type</label>
+        <div class="delivery-options">
+          <label><input type="radio" name="orderType" value="delivery" checked> Delivery</label>
+          <label><input type="radio" name="orderType" value="collection"> Collection</label>
+        </div>
+
+        <!-- Contact -->
+        <label for="fullName">Full name</label>
+        <input type="text" id="fullName" required placeholder="Naruto Uzumaki">
+
+        <label for="email">Email</label>
+        <input type="email" id="email" required placeholder="hero@example.com">
+
+        <label for="phone">Phone number</label>
+        <input type="tel" id="phone" required placeholder="+44 0000 000000">
+
+        <!-- Address (optional hide if collection, but we'll keep simple) -->
+        <label for="address">Address (for delivery)</label>
+        <input type="text" id="address" placeholder="Hidden Leaf Village, Ramen Street">
+
+        <!-- Card details -->
+        <h2 style="margin-top:18px;">Payment details</h2>
+
+        <label for="cardName">Name on card</label>
+        <input type="text" id="cardName" required>
+
+        <label for="cardNumber">Card number</label>
+        <input type="text" id="cardNumber" required maxlength="19" placeholder="4444 3333 2222 1111">
+
+        <div class="payment-row">
+          <div>
+            <label for="expiry">Expiry</label>
+            <input type="text" id="expiry" required placeholder="MM/YY">
+          </div>
+          <div>
+            <label for="cvv">CVV</label>
+            <input type="password" id="cvv" required maxlength="4">
+          </div>
+        </div>
+
+        <button type="submit" style="margin-top:18px;">
+          Confirm & Pay
+        </button>
+
+        <p class="confirm-message" id="confirmMessage">
+          ✅ Order confirmed! Your ramen is on its way to the Hidden Leaf Village.
+        </p>
+      </form>
+    </section>
+
+    <section class="payment-summary">
+  <h2>Order Summary</h2>
+  <p>Service: <span id="paymentServiceLabel"></span></p>
+
+  <div id="orderItems"></div>
+
+  <p class="payment-total">
+    Total: <span id="orderTotal">£0.00</span>
+  </p>
+</section>
+
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="about.html">About Us</a>
+      <a href="menu.html">Menu</a>
+      <a href="contact.html">Help & Support</a>
+    </div>
+    <p>© 2025 Ichiraku Ramen | The Way of Ninja Food 🍜⚡</p>
+  </footer>
+
+  <!-- Reuse your JS for nav + modals -->
+  <script src="js/main.js"></script>
+  <script src="js/payment.js"></script>
+
+
+  <script>
+    // Simple front-end validation + fake confirmation
+    const paymentForm = document.getElementById('paymentForm');
+    const confirmMsg = document.getElementById('confirmMessage');
+
+    paymentForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      // Basic check – all required fields filled?
+      const requiredIds = ['fullName','email','phone','cardName','cardNumber','expiry','cvv'];
+      const missing = requiredIds.some(id => {
+        const el = document.getElementById(id);
+        return !el || !el.value.trim();
+      });
+
+      if (missing) {
+        alert('Please fill in all required fields.');
+        return;
+      }
+
+      // Show confirmation
+      confirmMsg.style.display = 'block';
+
+      // Optionally clear "cart" and redirect after a short delay
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 3500);
+    });
+  </script>
+</body>
+</html>

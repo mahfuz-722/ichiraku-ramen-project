@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Ichiraku Ramen</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="about-body">
+
+  <nav class="navbar">
+    <div class="nav-left">
+      <h1 class="logo">ICHIRAKU RAMEN</h1>
+      <div class="service-toggle">
+        <button class="service-btn active" data-service="delivery">Delivery</button>
+        <button class="service-btn" data-service="collection">Collection</button>
+      </div>
+    </div>
+
+    <ul class="nav-links">
+        <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+
+   <div class="nav-right">
+  <!-- Cart -->
+  <button class="cart-icon" id="cartButton" aria-label="View basket">
+    🛒 <span id="cart-count">0</span>
+  </button>
+
+  <!-- Auth buttons -->
+  <button class="login-btn">Sign In</button>
+  <button class="register-btn">Register</button>
+
+  <!-- 3 dots menu ... (keep as you already have) -->
+  ...
+</div>
+
+
+    
+      <div class="dots-wrapper">
+        <button class="dots-menu" id="userMenuToggle">⋮</button>
+        <div class="user-menu" id="userMenu">
+          <button data-action="history">Order History</button>
+          <button data-action="favorites">Favorites</button>
+          <button data-action="theme">Dark / Light Mode</button>
+          <button data-action="settings">Settings</button>
+          <button data-action="help">Help & Support</button>
+          <button data-action="about">About</button>
+          <button data-action="logout" id="logoutItem" style="display:none;">Logout</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <header class="about-hero">
+    <h2>About Ichiraku Ramen</h2>
+    <p>The number one ninja noodle house in the Hidden Leaf Village.</p>
+  </header>
+
+  <main class="about-main">
+    <section class="about-intro">
+      <p>
+        Ichiraku Ramen started as a small stall serving hungry shinobi after long missions.
+        Today, we mix traditional Japanese recipes with a little ninja magic to bring you rich broths,
+        springy noodles and comforting bowls that feel like home.
+      </p>
+    </section>
+
+    <section class="about-cards">
+      <article>
+        <h3>Our Story</h3>
+        <p>
+          From a quiet ramen stand to a legendary hangout spot,
+          Ichiraku has been the backdrop to countless celebrations, mission briefings and late-night chats.
+        </p>
+      </article>
+      <article>
+        <h3>Our Vision & Values</h3>
+        <p>
+          We believe good food powers great adventures. We value warmth, generosity and a welcoming bowl
+          for every villager — from fresh genin to experienced Hokage.
+        </p>
+      </article>
+      <article>
+        <h3>How We Work</h3>
+        <p>
+          Our kitchen runs like a well-trained squad — precise, fast and focused.
+          Every broth is simmered for hours, every topping is prepared with care.
+        </p>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="about.html">About Us</a>
+      <a href="menu.html">Menu</a>
+      <a href="contact.html">Help & Support</a>
+    </div>
+    <p>© 2025 Ichiraku Ramen | Powered by Ninja Hospitality</p>
+  </footer>
+
+  <!-- shared modals -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content auth-modal">
+      <span class="close-login">&times;</span>
+      <h2>Sign In</h2>
+      <form id="loginForm">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+        <button type="submit">Sign In</button>
+      </form>
+      <p id="loginSuccess" class="success-message">✅ Login Successful!</p>
+      <p class="switch-text">Don't have an account? <a href="#" id="toRegister">Register</a></p>
+    </div>
+  </div>
+
+  <div id="registerModal" class="modal">
+    <div class="modal-content auth-modal">
+      <span class="close-register">&times;</span>
+      <h2>Register</h2>
+      <form id="registerForm">
+        <label for="regUsername">Username</label>
+        <input type="text" id="regUsername" name="regUsername" required>
+
+        <label for="regEmail">Email</label>
+        <input type="email" id="regEmail" name="regEmail" required>
+
+        <label for="regPassword">Password</label>
+        <input type="password" id="regPassword" name="regPassword" required>
+
+        <label for="regConfirmPassword">Confirm Password</label>
+        <input type="password" id="regConfirmPassword" name="regConfirmPassword" required>
+
+        <button type="submit">Register</button>
+      </form>
+      <p id="registerSuccess" class="success-message">✅ Registration Successful!</p>
+      <p class="switch-text">Already have an account? <a href="#" id="toLogin">Sign In</a></p>
+    </div>
+  </div>
+
+  <div id="cartModal" class="modal">
+    <div class="modal-content cart-modal">
+      <span class="close-cart">&times;</span>
+      <h2>Your Basket</h2>
+      <div id="cartItems"></div>
+      <p class="cart-total">Total: <span id="cartTotal">£0.00</span></p>
+      <button id="checkoutBtn" type="button">Checkout</button>
+    </div>
+  </div>
+
+  <div id="infoModal" class="modal">
+    <div class="modal-content info-modal">
+      <span class="close-info">&times;</span>
+      <h2 id="infoTitle"></h2>
+      <div id="infoBody"></div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
